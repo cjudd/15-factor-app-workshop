@@ -13,25 +13,25 @@ This is a tutorial for learning to better apply [Heroku's 12 Factor App](https:/
 
 [3 - Dependency management](03_dependencies.md)
 
-[4 - Configuration, credentials, and code](04_configuration.md)
+[4 - Design, build, release, and run](04_design_build_release_run.md)
 
-[5 - Backing services](05_backing_services.md)
+[5 - Configuration, credentials, and code](05_configuration.md)
 
-[6 - Design, build, release, and run](06_design_build_release_run.md)
+[6 - Logs](06_logs.md)
 
-[7 - Stateless processes](07_statless_processes.md)
+[7 - Disposability](07_disposability.md)
 
-[8 - Port binding](08_port_binding.md)
+[8 - Backing services](08_backing_services.md)
 
-[9 - Concurrency](09_concurrency.md)
+[9 - Environmental parity](09_environmental_parity.md)
 
-[10 - Disposability](10_disposability.md)
+[10 - Administrative processes](10_administrative_processes.md)
 
-[11 - Environmental parity](11_environmental_parity.md)
+[11 - Port binding](11_port_binding.md)
 
-[12 - Logs](12_logs.md)
+[12 - Stateless processes](12_statless_processes.md)
 
-[13 - Administrative processes](13_administrative_processes.md)
+[13 - Concurrency](13_concurrency.md)
 
 [14 - Telemetry](14_telemetry.md)
 
