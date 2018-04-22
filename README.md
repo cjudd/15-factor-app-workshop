@@ -7,7 +7,7 @@ This is a tutorial for learning to better apply [Heroku's 12 Factor App](https:/
 
 [0 - Set Up](00_setup.md)
 
-[1 - One codebase, one application](01_codebase.md)
+[1 - Codebase/One codebase, one application](01_codebase.md)
 
 [2 - API first](02_api.md)
 
