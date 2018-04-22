@@ -8,5 +8,9 @@
     <groupId>org.springframework.boot</groupId>
     <artifactId>spring-boot-starter-data-neo4j</artifactId>
 </dependency>
+```
 
+3. Rebuild to download dependency.
+```
+./mvnw package
 ```
