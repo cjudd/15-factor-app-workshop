@@ -20,5 +20,5 @@ Why does it throw an exception? It throws a "java.net.ConnectException: Connecti
 
 4. Rerun the Docker container using an environment variable to configure it.
 ```
-docker run --name rp1-music -p 8080:8080 --network rp1-network -e SPRING_DATASOURCE_URL=jdbc:mysql://rp1-music-db:3306/rp1 -it --rm javajudd/rp1-music:0.0.1-SNAPSHOT
+docker run --name rp1-music -p 8080:8080 --network rp1-network -e SPRING_DATASOURCE_URL=jdbc:mysql://rp1-music-db:3306/rp1 -e SPRING_DATASOURCE_USERNAME=rp1 -e SPRING_DATASOURCE_PASSWORD=rp1+1 -it --rm javajudd/rp1-music:0.0.1-SNAPSHOT
 ```
