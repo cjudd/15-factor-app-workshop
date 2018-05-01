@@ -47,7 +47,7 @@ docker images
 
 5. Run Docker container from image.
 ```
-docker run -it --rm -p 8080:8080 javajudd/rp1-rec-engine:0.0.1-SNAPSHOT
+docker run -it --rm -p 8080:8080 --network rp1-network javajudd/rp1-rec-engine:0.0.1-SNAPSHOT
 ```
 
 6. Test by visiting [http://localhost:8080/user/2/recommendation](http://localhost:8080/user/2/recommendation)
