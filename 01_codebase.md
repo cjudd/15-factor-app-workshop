@@ -3,7 +3,8 @@
 1. Start MySQL database (See [Backing Services](08_backing_services.md)).
 
 ```
-docker run --name rp1-music-db -e MYSQL_ROOT_PASSWORD=root+1 -e MYSQL_DATABASE=rp1 -e MYSQL_USER=rp1 -e MYSQL_PASSWORD=rp1+1 -p 3306:3306 -d mysql:latest
+docker network create rp1-network
+docker run --name rp1-music-db -e MYSQL_ROOT_PASSWORD=root+1 -e MYSQL_DATABASE=rp1 -e MYSQL_USER=rp1 -e MYSQL_PASSWORD=rp1+1 --network rp1-network -p 3306:3306 -d mysql:latest
 ```
 
 2. Clone the existing repository.
