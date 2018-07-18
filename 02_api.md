@@ -13,6 +13,14 @@
 * package - net.javajudd.rp1recengine
 * dependencies - web
 
+or 
+
+```
+curl https://start.spring.io/starter.zip -d dependencies=web \
+-d name=rp1-rec-engine -d artifactId=rp1recengine -d groupId=net.javajudd -d packageName=net.javajudd.rp1recengine -d description="RP1 Music Recommendation Engine" \
+-d language=java -d javaVersion=1.8 -d packaging=jar -d type=maven-project -d baseDir=rp1recengine -o rp1recengine.zip
+```
+
 3. Unzip rp1recengine.zip.
 ```
 unzip rp1recengine.zip
