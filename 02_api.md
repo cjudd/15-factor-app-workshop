@@ -5,7 +5,7 @@
 2. Generate a RP1 Recommendation Engine project containing the following:
 * build - Maven
 * language - Java
-* spring boot version - newst
+* spring boot version - newest
 * group - net.javajudd
 * artifact - rp1recengine
 * name - rp1-rec-engine
