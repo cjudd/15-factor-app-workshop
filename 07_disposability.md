@@ -13,12 +13,17 @@ java -jar target/rp1music-0.0.1-SNAPSHOT.jar
 spring.main.banner-mode=off
 ```
 
-3. Run the app to see how long it takes to start up.
+3. Build.
 ```
 java -jar target/rp1music-0.0.1-SNAPSHOT.jar
 ```
 
-4. Run app in debug mode to determine unnecessary auto config on startup.
+4. Run the app to see how long it takes to start up.
+```
+java -jar target/rp1music-0.0.1-SNAPSHOT.jar
+```
+
+5. Run app in debug mode to determine unnecessary auto config on startup.
 ```
 java -jar target/rp1music-0.0.1-SNAPSHOT.jar --debug
 ```
@@ -28,7 +33,12 @@ java -jar target/rp1music-0.0.1-SNAPSHOT.jar --debug
 spring.autoconfigure.exclude=org.springframework.boot.autoconfigure.websocket.servlet.WebSocketServletAutoConfiguration
 ```
 
-6. Run the app to see how long it takes to start up.
+6. Build.
+```
+java -jar target/rp1music-0.0.1-SNAPSHOT.jar
+```
+
+7. Run the app to see how long it takes to start up.
 ```
 java -jar target/rp1music-0.0.1-SNAPSHOT.jar
 ```
