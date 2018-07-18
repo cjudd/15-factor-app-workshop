@@ -19,7 +19,9 @@ docker run --name rp1-music -p 8080:8080 --network rp1-network -e SPRING_DATASOU
 4. In Kibana, configure index by going to [Management](http://localhost:5601/app/kibana#/management/kibana/index?_g=()).
 
 5. In the Index pattern, enter logstash-* and press Next step.
+![Index pattern](images/kibana-index-pattern.png)
 
 6. In the Time Filter field name, select @timestamp and press Create index pattern.
+![Time Filter field](images/kibana-timestamp.png)
 
 7. Now you are ready to use the Discover to search for log related entries.
