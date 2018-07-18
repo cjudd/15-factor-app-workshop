@@ -1,6 +1,6 @@
 # Dependencies/Dependency Management
 
-1. Edit pom.xml.
+1. In rp1recengine, edit pom.xml.
 
 2. Add spring-boot-starter-data-neo4j dependency.
 ```
