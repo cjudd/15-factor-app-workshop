@@ -25,3 +25,4 @@ docker run --name rp1-music -p 8080:8080 --network rp1-network -e SPRING_DATASOU
 ![Time Filter field](images/kibana-timestamp.png)
 
 7. Now you are ready to use the Discover to search for log related entries.
+![Search](images/kibana-search.png)
