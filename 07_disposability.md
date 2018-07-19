@@ -7,7 +7,7 @@ Maximize robustness with fast startup and graceful shutdown
 java -jar target/rp1music-0.0.1-SNAPSHOT.jar
 ```
 
-2. Edit application.propeties file to disable ASCII art on start up.
+2. Edit application.properties file to disable ASCII art on start up.
 ```
 # speed up start up
 spring.main.banner-mode=off
