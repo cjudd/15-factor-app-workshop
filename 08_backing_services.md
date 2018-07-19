@@ -189,7 +189,7 @@ CREATE (n:Song { name: 'Thriller', id: â€˜63a6140a-f99f-4f67-a0b2-431c1ca4c11bâ€
 
 // Add likes relationship
 MATCH (a:User),(b:Song)
-WHERE a.username = 'cjudd' AND b.id = '42e5f46d4-b16f-3205-9a55-da193324a4e6'
+WHERE a.username = 'cjudd' AND b.id = '63a6140a-f99f-4f67-a0b2-431c1ca4c11b'
 CREATE (a)-[r:LIKES]->(b)
 RETURN type(r)
 
