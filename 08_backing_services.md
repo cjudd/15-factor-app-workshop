@@ -177,3 +177,34 @@ public class ApiController {
 ```
 ./mvnw spring-boot:run
 ```
+
+
+Neo4j commands:
+```
+// create user
+CREATE (n:User { username: 'cjudd', id: 1 })
+
+// create song
+CREATE (n:Song { name: 'Thriller', id: ‘63a6140a-f99f-4f67-a0b2-431c1ca4c11b’})
+
+// Add likes relationship
+MATCH (a:User),(b:Song)
+WHERE a.username = 'cjudd' AND b.id = '42e5f46d4-b16f-3205-9a55-da193324a4e6'
+CREATE (a)-[r:LIKES]->(b)
+RETURN type(r)
+
+// find songs a user likes
+MATCH (u:User {username:"cjudd"})-[:LIKES]->(song:Song)
+RETURN u, song
+
+// find songs in common
+MATCH (u:User {username:'cjudd'})-[:LIKES]->(s1)<-[:LIKES]-(u2:User)
+RETURN s1
+
+// recommendations
+MATCH (u:User {username:'cjudd'})-[:LIKES]->(s1)<-[:LIKES]-(u2:User)-[:LIKES]->(s2)
+RETURN s2
+
+MATCH (u:User {id:1})-[:LIKES]->(commonSongs)<-[:LIKES]-(u2:User)-[:LIKES]->(recommndedSongs)
+RETURN recommndedSongs
+```
