@@ -35,7 +35,7 @@ spring.autoconfigure.exclude=org.springframework.boot.autoconfigure.websocket.se
 
 6. Build.
 ```
-java -jar target/rp1music-0.0.1-SNAPSHOT.jar
+./mvnw package
 ```
 
 7. Run the app to see how long it takes to start up.
