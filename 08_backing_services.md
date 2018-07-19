@@ -185,7 +185,7 @@ Neo4j commands:
 CREATE (n:User { username: 'cjudd', id: 1 })
 
 // create song
-CREATE (n:Song { name: 'Thriller', id: ‘63a6140a-f99f-4f67-a0b2-431c1ca4c11b’})
+CREATE (n:Song { name: 'Thriller', id: '63a6140a-f99f-4f67-a0b2-431c1ca4c11b'})
 
 // Add likes relationship
 MATCH (a:User),(b:Song)
