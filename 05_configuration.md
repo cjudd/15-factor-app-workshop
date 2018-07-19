@@ -2,7 +2,7 @@
 
 1. Build rp1-music Docker image.
 ```
-../rp1-music
+cd ../rp1-music
 ./mvnw package
 ```
 
