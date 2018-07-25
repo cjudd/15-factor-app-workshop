@@ -15,7 +15,7 @@ spring.main.banner-mode=off
 
 3. Build.
 ```
-java -jar target/rp1music-0.0.1-SNAPSHOT.jar
+./mvnw package
 ```
 
 4. Run the app to see how long it takes to start up.
