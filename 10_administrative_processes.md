@@ -194,3 +194,8 @@ docker run -it --rm --network rp1-network --entrypoint "/usr/bin/java"  -eSPRING
 ```
 
 7. Validate Neo4j was populated.
+```
+MATCH (s:Song) RETURN s
+```
+
+NOTE: Should be 11 songs.
