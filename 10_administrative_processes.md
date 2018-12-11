@@ -92,7 +92,7 @@ public class PopulateNeo4j {
 
 4. Run from container.
 ```
-docker run -it --rm --network rp1-network --entrypoint "/usr/bin/java -cp /usr/share/rp1/rp1-rec-engine.jar -Dloader.main=net.javajudd.rp1recengine.PopulateNeo4j org.springframework.boot.loader.PropertiesLauncher" javajudd/rp1-rec-engine:0.0.1-SNAPSHOT
+docker run -it --rm --network rp1-network --entrypoint "/usr/bin/java"  -eSPRING_DATA_NEO4J_URI=bolt://rp1-neo4j -eSPRING_DATASOURCE_URL=jdbc:mysql://rp1-music-db:3306/rp1 javajudd/rp1-rec-engine:0.0.1-SNAPSHOT  -cp /usr/share/rp1/rp1-rec-engine.jar -Dloader.main=net.javajudd.rp1recengine.PopulateNeo4j org.springframework.boot.loader.PropertiesLauncher
 ```
 
 5. Validate Neo4j was populated.
