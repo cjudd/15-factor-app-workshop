@@ -58,13 +58,9 @@ public class Song {
 ```java
 package net.javajudd.rp1recengine.domain;
 
-import java.util.Collections;
 import java.util.HashSet;
-import java.util.Optional;
 import java.util.Set;
-import java.util.stream.Collectors;
 
-import org.neo4j.ogm.annotation.GeneratedValue;
 import org.neo4j.ogm.annotation.Id;
 import org.neo4j.ogm.annotation.NodeEntity;
 import org.neo4j.ogm.annotation.Relationship;
@@ -72,14 +68,14 @@ import org.neo4j.ogm.annotation.Relationship;
 @NodeEntity
 public class User {
 
-    @Id 
-    private Long id;
+	@Id
+    private String id;
 
 	private String username;
 
 	private User() {};
 
-	public User(Long id, String username) {
+	public User(String id, String username) {
 		this.id = id;
 		this.username = username;
 	}
@@ -101,6 +97,14 @@ public class User {
 	public void setUsername(String username) {
 		this.username = username;
 	}
+
+	public String getId() {
+		return id;
+	}
+
+	public void setId(String id) {
+		this.id = id;
+	}
 }
 ```
 
@@ -111,7 +115,9 @@ package net.javajudd.rp1recengine.repository;
 import net.javajudd.rp1recengine.domain.Song;
 
 import org.springframework.data.repository.CrudRepository;
+import org.springframework.stereotype.Repository;
 
+@Repository
 public interface SongRepository extends CrudRepository<Song, String> {
 
     Song findByName(String name);
@@ -128,17 +134,40 @@ import net.javajudd.rp1recengine.domain.Song;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.neo4j.annotation.Query;
 import org.springframework.data.repository.query.Param;
+import org.springframework.stereotype.Repository;
 
+@Repository
 public interface UserRepository extends CrudRepository<User, Long> {
 
     User findByUsername(String username);
 
     @Query("MATCH (u:User)-[:LIKES]->(commonSongs)<-[:LIKES]-(u2:User)-[:LIKES]->(recommndedSongs) WHERE u.id = {id} RETURN recommndedSongs")
-    List<Song> findRecommendations(@Param("id") Long id);
+    List<Song> findRecommendations(@Param("id") String id);
 }
 ```
 
-6. Update api to use Neo4j recommendations.
+6. Fix broken unit tests.
+```java
+package net.javajudd.rp1recengine;
+
+import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.junit4.SpringRunner;
+
+@RunWith(SpringRunner.class)
+@SpringBootTest(classes = Rp1RecEngineApplication.class)
+public class Rp1RecEngineApplicationTests {
+
+	@Test
+	public void contextLoads() {
+	}
+
+}
+```
+
+
+7. Update api to use Neo4j recommendations.
 ```java
 package net.javajudd.rp1recengine.api;
 
@@ -156,6 +185,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @RestController
+@RequestMapping("/api/v1")
 public class ApiController {
 
 	@Autowired
@@ -164,7 +194,7 @@ public class ApiController {
 	private static final Logger logger = LoggerFactory.getLogger(ApiController.class);
 
 	@RequestMapping("/user/{userId}/recommendation")
-	public List<String> recommendations(@PathVariable("userId") Long userId) {
+	public List<String> recommendations(@PathVariable("userId") String userId) {
 		List<Song> recommendedSongs = userRepository.findRecommendations(userId);
 		List<String> ids = recommendedSongs.stream().map(s -> s.getId()).collect(Collectors.toList());
 		logger.info("User {} was recommended songs: {}", userId, ids);
@@ -173,7 +203,7 @@ public class ApiController {
 }
 ```
 
-7. Run application and test [http://localhost:8080/user/1/recommendation](http://localhost:8080/user/2/recommendation)
+8. Run application and test [http://localhost:8080/api/v1/user/1/recommendation](http://localhost:8080/api/v1/user/1/recommendation)
 ```
 ./mvnw spring-boot:run
 ```
@@ -181,28 +211,52 @@ public class ApiController {
 
 Neo4j commands:
 ```
-// create user
-CREATE (n:User { username: 'cjudd', id: 1 })
+// create songs
+CREATE (s:Song { name: 'Thriller', id: '63a6140a-f99f-4f67-a0b2-431c1ca4c11b'})
+CREATE (s:Song { name: 'Jump', id: 'ff565cd7-acf8-4dc0-9603-72d1b7ae284b'})
+CREATE (s:Song { name: 'I Hate Myself for Loving Your', id: '4ac01278-4769-422f-8a0c-57c9c7c1159f'})
+CREATE (s:Song { name: 'Everybody Wants to Rule the World', id: 'e135df1f-d8b3-4998-8cb4-0834585569df'})
 
-// create song
-CREATE (n:Song { name: 'Thriller', id: '63a6140a-f99f-4f67-a0b2-431c1ca4c11b'})
+// create users
+CREATE (u:User { username: 'admin', id: 1 })
+CREATE (u:User { username: 'user1', id: 2 })
 
 // Add likes relationship
-MATCH (a:User),(b:Song)
-WHERE a.username = 'cjudd' AND b.id = '63a6140a-f99f-4f67-a0b2-431c1ca4c11b'
-CREATE (a)-[r:LIKES]->(b)
-RETURN type(r)
+MATCH (u:User),(s:Song)
+WHERE u.username = 'admin' AND s.id = 'ff565cd7-acf8-4dc0-9603-72d1b7ae284b'
+CREATE (u)-[l:LIKES]->(s)
+RETURN type(l)
+
+MATCH (u:User),(s:Song)
+WHERE u.username = 'admin' AND s.id = 'e135df1f-d8b3-4998-8cb4-0834585569df'
+CREATE (u)-[l:LIKES]->(s)
+RETURN type(l)
+
+MATCH (u:User),(s:Song)
+WHERE u.username = 'user1' AND s.id = '4ac01278-4769-422f-8a0c-57c9c7c1159f'
+CREATE (u)-[l:LIKES]->(s)
+RETURN type(l)
+
+MATCH (u:User),(s:Song)
+WHERE u.username = 'user1' AND s.id = '63a6140a-f99f-4f67-a0b2-431c1ca4c11b'
+CREATE (u)-[l:LIKES]->(s)
+RETURN type(l)
+
+MATCH (u:User),(s:Song)
+WHERE u.username = 'user1' AND s.id = 'ff565cd7-acf8-4dc0-9603-72d1b7ae284b'
+CREATE (u)-[l:LIKES]->(s)
+RETURN type(l)
 
 // find songs a user likes
-MATCH (u:User {username:"cjudd"})-[:LIKES]->(song:Song)
-RETURN u, song
+MATCH (u:User {username:"admin"})-[:LIKES]->(s:Song)
+RETURN u, s
 
 // find songs in common
-MATCH (u:User {username:'cjudd'})-[:LIKES]->(s1)<-[:LIKES]-(u2:User)
+MATCH (u:User {username:'admin'})-[:LIKES]->(s1)<-[:LIKES]-(u2:User)
 RETURN s1
 
 // recommendations
-MATCH (u:User {username:'cjudd'})-[:LIKES]->(s1)<-[:LIKES]-(u2:User)-[:LIKES]->(s2)
+MATCH (u:User {username:'admin'})-[:LIKES]->(s1)<-[:LIKES]-(u2:User)-[:LIKES]->(s2)
 RETURN s2
 
 MATCH (u:User {id:1})-[:LIKES]->(commonSongs)<-[:LIKES]-(u2:User)-[:LIKES]->(recommndedSongs)
