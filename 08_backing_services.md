@@ -58,25 +58,24 @@ public class Song {
 ```java
 package net.javajudd.rp1recengine.domain;
 
-import java.util.HashSet;
-import java.util.Set;
-
-import org.neo4j.ogm.annotation.Id;
 import org.neo4j.ogm.annotation.NodeEntity;
 import org.neo4j.ogm.annotation.Relationship;
+
+import java.util.HashSet;
+import java.util.Set;
 
 @NodeEntity
 public class User {
 
-	@Id
-	private String id;
+
+    private String uid;
 
 	private String username;
 
 	private User() {};
 
 	public User(String id, String username) {
-		this.id = id;
+		this.uid = id;
 		this.username = username;
 	}
 
@@ -98,12 +97,12 @@ public class User {
 		this.username = username;
 	}
 
-	public String getId() {
-		return id;
+	public String getUid() {
+		return uid;
 	}
 
-	public void setId(String id) {
-		this.id = id;
+	public void setUid(String id) {
+		this.uid = id;
 	}
 }
 ```
@@ -141,8 +140,8 @@ public interface UserRepository extends CrudRepository<User, Long> {
 
     User findByUsername(String username);
 
-    @Query("MATCH (u:User)-[:LIKES]->(commonSongs)<-[:LIKES]-(u2:User)-[:LIKES]->(recommndedSongs) WHERE u.id = {id} RETURN recommndedSongs")
-    List<Song> findRecommendations(@Param("id") String id);
+    @Query("MATCH (u:User)-[:LIKES]->(commonSongs)<-[:LIKES]-(u2:User)-[:LIKES]->(recommndedSongs) WHERE u.uid = {id} RETURN recommndedSongs")
+    List<Song> findRecommendations(@Param("id") Long id);
 }
 ```
 
@@ -194,7 +193,7 @@ public class ApiController {
 	private static final Logger logger = LoggerFactory.getLogger(ApiController.class);
 
 	@RequestMapping("/user/{userId}/recommendation")
-	public List<String> recommendations(@PathVariable("userId") String userId) {
+	public List<String> recommendations(@PathVariable("userId") Long userId) {
 		List<Song> recommendedSongs = userRepository.findRecommendations(userId);
 		List<String> ids = recommendedSongs.stream().map(s -> s.getId()).collect(Collectors.toList());
 		logger.info("User {} was recommended songs: {}", userId, ids);
@@ -218,8 +217,8 @@ CREATE (s:Song { name: 'I Hate Myself for Loving Your', id: '4ac01278-4769-422f-
 CREATE (s:Song { name: 'Everybody Wants to Rule the World', id: 'e135df1f-d8b3-4998-8cb4-0834585569df'})
 
 // create users
-CREATE (u:User { username: 'admin', id: 1 })
-CREATE (u:User { username: 'user1', id: 2 })
+CREATE (u:User { username: 'admin', uid: 1 })
+CREATE (u:User { username: 'user1', uid: 2 })
 
 // Add likes relationship
 MATCH (u:User),(s:Song)
