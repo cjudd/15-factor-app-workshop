@@ -1,6 +1,6 @@
 # Backing Services
 
-Treat backing services as attached resources
+Treat backing services as attached resources.
 
 1. Start neo4j database.
 ```
@@ -69,7 +69,7 @@ import org.neo4j.ogm.annotation.Relationship;
 public class User {
 
 	@Id
-    private String id;
+	private String id;
 
 	private String username;
 
