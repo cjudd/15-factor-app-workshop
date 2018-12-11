@@ -7,7 +7,7 @@ Treat backing services as attached resources
 docker run --name rp1-neo4j --network rp1-network -p 7474:7474 -p 7687:7687 -d neo4j:3.4
 ```
 
-2. Login to neo4j at [http://localhost:7474](http://localhost:7474) and change password to neo4j+1.
+2. Login to neo4j at [http://localhost:7474](http://localhost:7474) and change password from neo4j to neo4j+1.
 
 3. rp1recengine add neo4j configurations to application.properties file.
 ```
@@ -20,7 +20,7 @@ spring.data.neo4j.password=neo4j+1
 NOTE: Dependency on neo4j as previously added in [Dependency management](03_dependencies.md).
 
 4. Add domain classes.
-```
+```java
 package net.javajudd.rp1recengine.domain;
 
 import org.neo4j.ogm.annotation.Id;
@@ -55,7 +55,7 @@ public class Song {
 }
 ```
 
-```
+```java
 package net.javajudd.rp1recengine.domain;
 
 import java.util.Collections;
@@ -105,7 +105,7 @@ public class User {
 ```
 
 5. Add repository classes.
-```
+```java
 package net.javajudd.rp1recengine.repository;
 
 import net.javajudd.rp1recengine.domain.Song;
@@ -118,7 +118,7 @@ public interface SongRepository extends CrudRepository<Song, String> {
 }
 ```
 
-```
+```java
 package net.javajudd.rp1recengine.repository;
 
 import java.util.List;
@@ -139,7 +139,7 @@ public interface UserRepository extends CrudRepository<User, Long> {
 ```
 
 6. Update api to use Neo4j recommendations.
-```
+```java
 package net.javajudd.rp1recengine.api;
 
 import org.slf4j.Logger;
