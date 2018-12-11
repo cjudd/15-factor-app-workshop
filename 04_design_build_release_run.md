@@ -1,6 +1,6 @@
 # Build, Release, Run/Design, Build, Release, Run
 
-1. Create a Dockerfile at the root of the project.
+1. Create a Dockerfile at the root of the rp1recengine project.
 ```
 FROM openjdk:8-jre
 
@@ -50,6 +50,6 @@ docker images
 docker run -it --rm -p 8080:8080 --network rp1-network javajudd/rp1-rec-engine:0.0.1-SNAPSHOT
 ```
 
-6. Test by visiting [http://localhost:8080/user/2/recommendation](http://localhost:8080/user/2/recommendation)
+6. Test by visiting [http://localhost:8080/api/v1/user/1/recommendation](http://localhost:8080/api/v1/user/2/recommendation)
 
 7. Shut it down.
