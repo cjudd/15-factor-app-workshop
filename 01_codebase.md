@@ -18,6 +18,6 @@ cd rp1-music
 ./mvnw spring-boot:run
 ```
 
-4. Browse to [http://localhost:8080](http://localhost:8080) and login with admin/password1, user1/password1 or user2/password1.
+4. Browse to [http://localhost:8080](http://localhost:8080) and login with admin/password1, user1/password1 or user2/password1 and add some music to their collection making sure at least one song over laps between some users.
 
 5. Shut server down.
