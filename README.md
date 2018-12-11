@@ -29,7 +29,7 @@ This is a tutorial for learning to better apply [Heroku's 12 Factor App](https:/
 
 [11 - Port binding](11_port_binding.md)
 
-[12 - Stateless processes](12_statless_processes.md)
+[12 - Stateless processes](12_stateless_processes.md)
 
 [13 - Concurrency](13_concurrency.md)
 
