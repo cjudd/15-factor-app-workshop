@@ -104,7 +104,7 @@ spring.datasource.username=root
 spring.datasource.password=root+1
 ```
 
-1. Add new class to batch load Neo4j.
+3. Add new class to batch load Neo4j.
 ```java
 package net.javajudd.rp1recengine;
 
@@ -182,19 +182,19 @@ public class PopulateNeo4j {
 }
 ```
 
-2. Run class.
+4. Run class.
 ```
 ./mvnw -Dmainclass=net.javajudd.rp1recengine.PopulateNeo4j spring-boot:run
 ```
 
-3. Package and create Docker image.
+5. Package and create Docker image.
 ```
 ./mvnw package
 ```
 
-4. Run from container.
+6. Run from container.
 ```
 docker run -it --rm --network rp1-network --entrypoint "/usr/bin/java"  -eSPRING_DATA_NEO4J_URI=bolt://rp1-neo4j -eSPRING_DATASOURCE_URL=jdbc:mysql://rp1-music-db:3306/rp1 javajudd/rp1-rec-engine:0.0.1-SNAPSHOT  -cp /usr/share/rp1/rp1-rec-engine.jar -Dloader.main=net.javajudd.rp1recengine.PopulateNeo4j org.springframework.boot.loader.PropertiesLauncher
 ```
 
-5. Validate Neo4j was populated.
+7. Validate Neo4j was populated.
