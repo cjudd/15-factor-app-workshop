@@ -37,7 +37,7 @@ git commit -m "Created a Spring Boot 2.X app using start.spring.io containing We
 
 5. Add stubbed out net.javajudd.rp1recengine.api.ApiController class.
 
-```
+```java
 package net.javajudd.rp1recengine.api;
 
 import org.slf4j.Logger;
