@@ -58,6 +58,7 @@ public class Song {
 ```java
 package net.javajudd.rp1recengine.domain;
 
+import org.neo4j.ogm.annotation.Id;
 import org.neo4j.ogm.annotation.NodeEntity;
 import org.neo4j.ogm.annotation.Relationship;
 
@@ -67,6 +68,8 @@ import java.util.Set;
 @NodeEntity
 public class User {
 
+	@Id
+	private String id;
 
     private String uid;
 
@@ -75,6 +78,7 @@ public class User {
 	private User() {};
 
 	public User(String id, String username) {
+		this.id = id;
 		this.uid = id;
 		this.username = username;
 	}
@@ -87,6 +91,14 @@ public class User {
 			likes = new HashSet<>();
 		}
 		likes.add(song);
+	}
+
+	public String getId() {
+		return id;
+	}
+
+	public void setId(String id) {
+		this.id = id;
 	}
 
 	public String getUsername() {
@@ -140,8 +152,8 @@ public interface UserRepository extends CrudRepository<User, Long> {
 
     User findByUsername(String username);
 
-    @Query("MATCH (u:User)-[:LIKES]->(commonSongs)<-[:LIKES]-(u2:User)-[:LIKES]->(recommndedSongs) WHERE u.uid = {id} RETURN recommndedSongs")
-    List<Song> findRecommendations(@Param("id") Long id);
+    @Query("MATCH (u:User)-[:LIKES]->(commonSongs)<-[:LIKES]-(u2:User)-[:LIKES]->(recommndedSongs) WHERE u.uid = {uid} RETURN recommndedSongs")
+    List<Song> findRecommendations(@Param("uid") String uid);
 }
 ```
 
@@ -193,7 +205,7 @@ public class ApiController {
 	private static final Logger logger = LoggerFactory.getLogger(ApiController.class);
 
 	@RequestMapping("/user/{userId}/recommendation")
-	public List<String> recommendations(@PathVariable("userId") Long userId) {
+	public List<String> recommendations(@PathVariable("userId") String userId) {
 		List<Song> recommendedSongs = userRepository.findRecommendations(userId);
 		List<String> ids = recommendedSongs.stream().map(s -> s.getId()).collect(Collectors.toList());
 		logger.info("User {} was recommended songs: {}", userId, ids);
