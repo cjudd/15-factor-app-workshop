@@ -51,6 +51,7 @@ import java.util.List;
 import java.util.Random;
 
 @RestController
+@RequestMapping("/api/v1")
 public class ApiController {
 
     private Random random = new Random();
@@ -77,6 +78,6 @@ public class ApiController {
 ./mvnw spring-boot:run
 ```
 
-7. Test api by navigating to [http://localhost:8080/user/2/recommendation](http://localhost:8080/user/2/recommendation)
+7. Test api by navigating to [http://localhost:8080/api/v1/user/1/recommendation](http://localhost:8080/api/v1/user/1/recommendation)
 
 8. Shut down api.
