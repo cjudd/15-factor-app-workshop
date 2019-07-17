@@ -3,7 +3,7 @@
 1. Build rp1-music Docker image.
 ```
 cd ../rp1-music
-./mvnw package
+./mvnw -DskipTests package
 ```
 
 2. Validate javajudd/rp1-music Docker images was created.
