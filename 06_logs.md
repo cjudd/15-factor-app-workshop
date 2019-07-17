@@ -11,6 +11,9 @@ docker-compose up -d
 
 2. Test Kibana container is running by going to [http://localhost:5601](http://localhost:5601)
 
+user: elastic
+password: changeme
+
 3. Rerun rp1-music container with log collection enabled.
 ```
 docker run --name rp1-music -p 8080:8080 --network rp1-network -e SPRING_DATASOURCE_URL=jdbc:mysql://rp1-music-db:3306/rp1 -e SPRING_DATASOURCE_USERNAME=rp1 -e SPRING_DATASOURCE_PASSWORD=rp1+1 -e SPRING_OUTPUT_ANSI_ENABLED=NEVER --log-driver=syslog --log-opt syslog-address=tcp://:5000 --log-opt syslog-facility=daemon -it --rm javajudd/rp1-music:0.0.1-SNAPSHOT
