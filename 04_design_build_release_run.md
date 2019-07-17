@@ -4,7 +4,7 @@
 ```
 FROM openjdk:8-jre
 
-ENTRYPOINT ["/usr/bin/java", "-jar", "/usr/share/rp1/rp1-rec-engine.jar"]
+ENTRYPOINT ["java", "-jar", "/usr/share/rp1/rp1-rec-engine.jar"]
 
 ARG JAR_FILE
 ADD target/${JAR_FILE} /usr/share/rp1/rp1-rec-engine.jar
