@@ -4,7 +4,7 @@
 
 ```
 docker network create rp1-network
-docker run --name rp1-music-db -e MYSQL_ROOT_PASSWORD=root+1 -e MYSQL_DATABASE=rp1 -e MYSQL_USER=rp1 -e MYSQL_PASSWORD=rp1+1 --network rp1-network -p 3306:3306 -d mysql:5.5
+docker run --name rp1-music-db -e MYSQL_ROOT_PASSWORD=root+1 -e MYSQL_DATABASE=rp1 -e MYSQL_USER=rp1 -e MYSQL_PASSWORD=rp1+1 --network rp1-network -p 3306:3306 -d mysql:8
 ```
 
 2. Clone the existing repository.
