@@ -19,12 +19,13 @@ password: changeme
 docker run --name rp1-music -p 8080:8080 --network rp1-network -e SPRING_DATASOURCE_URL=jdbc:mysql://rp1-music-db:3306/rp1 -e SPRING_DATASOURCE_USERNAME=rp1 -e SPRING_DATASOURCE_PASSWORD=rp1+1 -e SPRING_OUTPUT_ANSI_ENABLED=NEVER --log-driver=syslog --log-opt syslog-address=tcp://:5000 --log-opt syslog-facility=daemon -it --rm javajudd/rp1-music:0.0.1-SNAPSHOT
 ```
 
-4. In Kibana, configure index by going to [Management](http://localhost:5601/app/kibana#/management/kibana/index?_g=()).
+4. In Kibana, configure index by going to [Management](http://localhost:5601/app/kibana#/management?_g=()).
+![Index pattern](images/kibana-management.png)
 
-5. In the Index pattern, enter logstash-* and press Next step.
+5. In the Index pattern, press the Create index pattern button, enter logstash-* and press Next step button.
 ![Index pattern](images/kibana-index-pattern.png)
 
-6. In the Time Filter field name, select @timestamp and press Create index pattern.
+6. In the Time Filter field name, select @timestamp and press Create index pattern button.
 ![Time Filter field](images/kibana-timestamp.png)
 
 7. Now you are ready to use the Discover to search for log related entries.
