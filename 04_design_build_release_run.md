@@ -15,7 +15,7 @@ ADD target/${JAR_FILE} /usr/share/rp1/rp1-rec-engine.jar
 <plugin>
     <groupId>com.spotify</groupId>
     <artifactId>dockerfile-maven-plugin</artifactId>
-    <version>1.4.0</version>
+    <version>1.4.13</version>
     <executions>
         <execution>
             <id>default</id>
