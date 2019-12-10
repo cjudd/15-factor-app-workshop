@@ -161,12 +161,9 @@ public interface UserRepository extends CrudRepository<User, Long> {
 ```java
 package net.javajudd.rp1recengine;
 
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.junit4.SpringRunner;
 
-@RunWith(SpringRunner.class)
 @SpringBootTest(classes = Rp1RecEngineApplication.class)
 public class Rp1RecEngineApplicationTests {
 
