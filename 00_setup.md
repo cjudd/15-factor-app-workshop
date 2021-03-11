@@ -2,7 +2,7 @@
 
 ## Requirements
 
-- [Java 8 JDK](http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html)
+- [Java 11 JDK](https://adoptopenjdk.net/)
 - Java IDE/Editor
 - [Docker](https://docs.docker.com/install/)
 
