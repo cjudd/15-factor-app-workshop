@@ -15,7 +15,7 @@ spring.main.banner-mode=off
 
 3. Build.
 ```
-./mvnw package
+./mvnw -DskipTests -Ddockerfile.skip=true package
 ```
 
 4. Run the app to see how long it takes to start up.
@@ -35,7 +35,7 @@ spring.autoconfigure.exclude=org.springframework.boot.autoconfigure.websocket.se
 
 6. Build.
 ```
-./mvnw package
+./mvnw -DskipTests -Ddockerfile.skip=true package
 ```
 
 7. Run the app to see how long it takes to start up.
