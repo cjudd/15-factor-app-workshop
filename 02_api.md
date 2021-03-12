@@ -59,7 +59,7 @@ public class ApiController {
 
     private static final Logger logger = LoggerFactory.getLogger(ApiController.class);
 
-    @RequestMapping("/user/{userId}/recommendation")
+    @GetMapping("/user/{userId}/recommendation")
     public List<Integer> recommendations(@PathVariable("userId") int userId) {
         List<Integer> recommendedSongs = Arrays.asList(random(), random(), random());
         logger.info("User {} was recommended songs: {}", userId, recommendedSongs);
