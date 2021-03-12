@@ -81,3 +81,22 @@ public class ApiController {
 7. Test api by navigating to [http://localhost:8080/api/v1/user/1/recommendation](http://localhost:8080/api/v1/user/1/recommendation)
 
 8. Shut down api.
+
+9. edit pom.xml by adding springdoc-openapi-ui dependency.
+
+```
+<dependency>
+    <groupId>org.springdoc</groupId>
+    <artifactId>springdoc-openapi-ui</artifactId>
+    <version>1.5.5</version>
+</dependency>
+```
+
+10. Run api again.
+
+```
+./mvnw spring-boot:run
+```
+11. Test api again using OpenAPI/Swagger interactive documentation at [http://localhost:8080/swagger-ui.html](http://localhost:8080/swagger-ui.html).
+
+12. Shut down api.
