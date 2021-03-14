@@ -2,7 +2,7 @@
 
 1. Create a Dockerfile at the root of the rp1recengine project.
 ```
-FROM openjdk:8-jre
+FROM openjdk:11-jre
 
 ENTRYPOINT ["java", "-jar", "/usr/share/rp1/rp1-rec-engine.jar"]
 
